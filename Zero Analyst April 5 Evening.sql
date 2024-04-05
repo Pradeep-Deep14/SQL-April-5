@@ -53,32 +53,6 @@ and p.purchasedate<p1.purchasedate
 
 --% of chance is there that the customer who bought macbook will buy airpods--
 
-
-SELECT
-DISTINCT c.*
-FROM CUSTOMERS c
-JOIN purchases p on c.customerid= p.customerid
-JOIN purchases p1 on c.customerid=p1.customerid
-where p.productname='Macbook'
-and p1.productname='Airpods'
-and p.purchasedate<p1.purchasedate
-
-
-SELECT c.*, p.*
-FROM CUSTOMERS c
-JOIN purchases p ON c.customerid = p.customerid
-WHERE p.productname = 'MacBook'
-
-
-UNION 
-
-
-SELECT c.*, p.*
-FROM CUSTOMERS c
-JOIN purchases p ON c.customerid = p.customerid
-WHERE p.productname = 'AirPods'
-
-
 SELECT 
     COUNT(DISTINCT m1.customerid) AS macbook_users,
     COUNT(DISTINCT m2.customerid) AS airpods_users,
@@ -93,7 +67,8 @@ LEFT JOIN
     (SELECT c.customerid
      FROM CUSTOMERS c
      JOIN purchases p ON c.customerid = p.customerid
-     WHERE p.productname = 'AirPods') AS m2 ON m1.customerid = m2.customerid;
+     WHERE p.productname = 'AirPods') AS m2 
+ON m1.customerid = m2.customerid;
 
 
 
